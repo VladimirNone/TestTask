@@ -27,7 +27,7 @@ namespace ForInterview.Models.Managers
 
         public IEnumerable<Blog> GetAllBlogsSortedByPopularity()
         {
-            return repository.GetAll().OrderBy(x => x.Posts.Count);
+            return repository.GetAllIncluding(x => x.Posts).OrderByDescending(x => x.Posts.Count);
         }
 
         public override async Task<Blog> FindByIdAsync(int id)

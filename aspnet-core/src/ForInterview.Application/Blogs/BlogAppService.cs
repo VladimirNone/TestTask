@@ -64,8 +64,7 @@ namespace ForInterview.Blogs.Dto
         public ListResultDto<PopularBlogListOutput> GetBlogsSortedByPopularity()
         {
             var sortedBlogs = _blogManager.GetAllBlogsSortedByPopularity();
-            var mappedList = ObjectMapper.Map<List<PopularBlogListOutput>>(sortedBlogs);
-            return new ListResultDto<PopularBlogListOutput>(mappedList);
+            return new ListResultDto<PopularBlogListOutput>(ObjectMapper.Map<List<PopularBlogListOutput>>(sortedBlogs));
         }
 
         public async Task<BlogListOutput> GetBlogById(int blogId)
