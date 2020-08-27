@@ -12,6 +12,10 @@ namespace ForInterview.Models.IManagers
         Task<T> CreateAsync(T entity);
         Task<T> UpdateAsync(T entity);
         Task DeleteAsync(T entity);
+        /// <summary>
+        /// If entity wasn't found, the func returns a default value
+        /// </summary>
+        /// <param name="id">id of the entity</param>
         Task<T> FindByIdAsync(int id);
     }
 }

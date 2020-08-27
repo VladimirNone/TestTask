@@ -8,6 +8,9 @@ namespace ForInterview.Models.IManagers
 {
     public interface IPostManager : IDomainService, IManager<Post>
     {
+        /// <summary>
+        /// Get all blogs with loaded evaluations 
+        /// </summary>
         IEnumerable<Post> GetAllPosts();
     }
 }

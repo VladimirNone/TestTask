@@ -42,6 +42,7 @@ namespace ForInterview.Blogs.Dto
 
         public async Task Update(UpdateBlogInput input)
         {
+            // Determine user is the author of the blog or not
             (var res, var blog) = await IsOwner(AbpSession.UserId, input.Id);
             if (!res)
                 return;
@@ -52,6 +53,7 @@ namespace ForInterview.Blogs.Dto
 
         public async Task Delete(DeleteBlogInput input)
         {
+            // Determine user is the author of the blog or not
             (var res, var blog) = await IsOwner(AbpSession.UserId, input.Id);
             if (!res)
                 return;
@@ -63,6 +65,7 @@ namespace ForInterview.Blogs.Dto
         [AbpAllowAnonymous]
         public ListResultDto<PopularBlogListOutput> GetBlogsSortedByPopularity()
         {
+            // The blogs are sorted by the count of posts. It's temporary solution
             var sortedBlogs = _blogManager.GetAllBlogsSortedByPopularity();
             return new ListResultDto<PopularBlogListOutput>(ObjectMapper.Map<List<PopularBlogListOutput>>(sortedBlogs));
         }

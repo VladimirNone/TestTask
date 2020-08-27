@@ -29,6 +29,7 @@ namespace ForInterview.Posts
 
         public async Task Create(CreatePostInput input)
         {
+            // Is the user the author of the blog?
             var blog = await _blogManager.FindByIdAsync(input.BlogId);
             if (blog?.AuthorId != AbpSession.UserId && AbpSession.UserId != input.AuthorId)
                 return;
@@ -36,11 +37,11 @@ namespace ForInterview.Posts
             var post = ObjectMapper.Map<Post>(input);
 
             await _postManager.CreateAsync(post);
-
         }
 
         public async Task Delete(DeletePostInput input)
         {
+            // Determine user is the author of the post or not
             (var res, var post) = await IsOwner(AbpSession.UserId, input.Id);
             if (!res)
                 return;
@@ -74,12 +75,16 @@ namespace ForInterview.Posts
         public async Task RatePost(EvaluationDto evaluation)
         { 
             var eval = ObjectMapper.Map<Evaluation>(evaluation);
+            // Simple protection
             eval.EvaluatorId = (int)AbpSession.UserId;
 
             (var wasFounded, var evalFounded) = await _evaluationManager.TryFindEvaluation(eval);
-
+            // If a user has already rated a post he can't do it again, only update
             if (wasFounded)
             {
+                if (evalFounded.Value == eval.Value)
+                    return;
+
                 evalFounded.Value = eval.Value;
                 await _evaluationManager.UpdateAsync(evalFounded);
             }
@@ -90,6 +95,7 @@ namespace ForInterview.Posts
 
         public async Task Update(UpdatePostInput input)
         {
+            // Determine user is the author of the post or not
             (var res, var post) = await IsOwner(AbpSession.UserId, input.Id);
             if (!res)
                 return;
