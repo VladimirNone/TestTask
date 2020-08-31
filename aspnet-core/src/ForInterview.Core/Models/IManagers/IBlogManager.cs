@@ -13,8 +13,12 @@ namespace ForInterview.Models.IManagers
         /// </summary>
         IEnumerable<Blog> GetAllBlogs();
         /// <summary>
-        /// Get all blogs with loaded Posts and sorted by the count of the Posts in each Blog
+        /// Get all blogs with loaded Posts and sorted by the count of the subscribed User
         /// </summary>
         IEnumerable<Blog> GetAllBlogsSortedByPopularity();
+        /// <summary>
+        /// Subscribe a user to a blog
+        /// </summary>
+        Task Subscribe(int userId, int blogId);
     }
 }

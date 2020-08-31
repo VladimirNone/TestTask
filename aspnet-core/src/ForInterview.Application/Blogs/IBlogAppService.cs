@@ -13,6 +13,7 @@ namespace ForInterview.Blogs.Dto
         Task Create(CreateBlogInput input);
         Task Update(UpdateBlogInput input);
         Task Delete(DeleteBlogInput input);
+        Task SubcribeUser(int blogId, int userId);
         Task<BlogListOutput> GetBlogById(int blogId);
         ListResultDto<PopularBlogListOutput> GetBlogsSortedByPopularity();
     }

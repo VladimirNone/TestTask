@@ -14,7 +14,7 @@ namespace ForInterview.Blogs.Dto
 
         public int AuthorId { get; set; }
 
-        public int CountOfPosts { get; set; }
+        public int CountOfSubscriptions { get; set; }
 
         public string Description { get; set; }
     }

@@ -35,5 +35,6 @@ namespace ForInterview.Authorization.Users
         public List<Evaluation> Evaluations { get; set; }
         public List<Blog> Blogs { get; set; }
         public List<Post> Posts { get; set; }
+        public List<Subscription> Subscriptions { get; set; }
     }
 }

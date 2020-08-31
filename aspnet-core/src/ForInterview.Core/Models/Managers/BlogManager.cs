@@ -27,12 +27,20 @@ namespace ForInterview.Models.Managers
 
         public IEnumerable<Blog> GetAllBlogsSortedByPopularity()
         {
-            return repository.GetAllIncluding(x => x.Posts).OrderByDescending(x => x.Posts.Count);
+            return repository.GetAllIncluding(x => x.Subscriptions).OrderByDescending(x => x.Subscriptions.Count);
         }
 
         public override async Task<Blog> FindByIdAsync(int id)
         {
             return await repository.GetAllIncluding(x => x.Posts).SingleOrDefaultAsync(x => x.Id == id);
+        }
+
+        public async Task Subscribe(int userId, int blogId)
+        {
+            var blog = await repository.GetAllIncluding(x => x.Subscriptions).SingleOrDefaultAsync(x => x.Id == blogId);
+
+            if(!blog.Subscriptions.Any(h=>h.UserId == userId && h.BlogId == blogId))
+                blog.Subscriptions.Add(new Subscription() { BlogId = blogId, UserId = userId });
         }
     }
 }

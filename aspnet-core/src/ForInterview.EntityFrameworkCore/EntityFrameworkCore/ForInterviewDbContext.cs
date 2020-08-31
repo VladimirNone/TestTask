@@ -14,6 +14,7 @@ namespace ForInterview.EntityFrameworkCore
         public DbSet<Blog> Blogs { get; set; }
         public DbSet<Post> Posts { get; set; }
         public DbSet<Evaluation> Evaluations { get; set; }
+        public DbSet<Subscription> Subscriptions { get; set; }
 
         public ForInterviewDbContext(DbContextOptions<ForInterviewDbContext> options)
             : base(options)

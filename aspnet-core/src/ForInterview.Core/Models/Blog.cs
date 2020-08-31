@@ -24,5 +24,6 @@ namespace ForInterview.Models
         public string Description { get; set; }
 
         public List<Post> Posts { get; set; }
+        public List<Subscription> Subscriptions { get; set; }
     }
 }

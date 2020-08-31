@@ -18,7 +18,7 @@ namespace ForInterview.Blogs.Dto
             CreateMap<UpdateBlogInput, Blog>();
 
             CreateMap<Blog, PopularBlogListOutput>()
-                .ForMember(x => x.CountOfPosts, opt => opt.MapFrom(h => h.Posts.Count));
+                .ForMember(x => x.CountOfSubscriptions, opt => opt.MapFrom(h => h.Subscriptions.Count));
 
             CreateMap<Blog, BlogListOutput>()
                 .ForMember(x => x.Posts, opt => opt.MapFrom(h => h.Posts));

@@ -4,14 +4,16 @@ using ForInterview.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ForInterview.Migrations
 {
     [DbContext(typeof(ForInterviewDbContext))]
-    partial class ForInterviewDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200831042546_Added_Ability_Subscribe")]
+    partial class Added_Ability_Subscribe
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

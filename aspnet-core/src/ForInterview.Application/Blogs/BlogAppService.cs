@@ -80,5 +80,10 @@ namespace ForInterview.Blogs.Dto
             var blog = await _blogManager.FindByIdAsync(blogId);
             return (userId == blog.AuthorId, blog);
         }
+
+        public async Task SubcribeUser(int blogId, int userId)
+        {
+            await _blogManager.Subscribe(userId, blogId);
+        }
     }
 }
